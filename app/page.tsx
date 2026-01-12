@@ -1,8 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [jobDescription, setJobDescription] = useState("");
 
@@ -19,7 +21,9 @@ export default function Home() {
     });
 
     const data = await res.json();
-    window.location.href = `/result/${data.id}`;
+    if (!res.ok) return alert(data.error);
+
+    router.push(`/result/${data.id}`);
   }
 
   return (
@@ -28,6 +32,7 @@ export default function Home() {
 
       <input
         type="file"
+        accept=".pdf,.docx"
         onChange={(e) => setFile(e.target.files?.[0] || null)}
         className="mb-4"
       />
@@ -38,10 +43,7 @@ export default function Home() {
         onChange={(e) => setJobDescription(e.target.value)}
       />
 
-      <button
-        onClick={submit}
-        className="bg-black text-white px-4 py-2"
-      >
+      <button onClick={submit} className="bg-black text-white px-4 py-2">
         Analyze Resume
       </button>
     </main>

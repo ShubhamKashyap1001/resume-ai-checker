@@ -6,16 +6,16 @@ export function calculateFinalScore(data: {
   ruleScore: number;
 }) {
   const finalScore =
-    data.skillMatch * 0.3 +
+    data.skillMatch * 10 * 0.3 +
     data.experienceScore * 10 * 0.25 +
     data.atsScore * 10 * 0.2 +
     data.grammarScore * 10 * 0.15 +
     data.ruleScore * 10 * 0.1;
 
   let rating = "❌ Poor";
-  if (finalScore >= 90) rating = "⭐⭐⭐⭐⭐";
-  else if (finalScore >= 75) rating = "⭐⭐⭐⭐";
-  else if (finalScore >= 60) rating = "⭐⭐⭐";
+  if (finalScore >= 85) rating = "⭐⭐⭐⭐⭐ Excellent";
+  else if (finalScore >= 70) rating = "⭐⭐⭐⭐ Good";
+  else if (finalScore >= 55) rating = "⭐⭐⭐ Average";
   else if (finalScore >= 40) rating = "⭐ Needs Improvement";
 
   return { finalScore, rating };
