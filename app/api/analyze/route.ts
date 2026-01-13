@@ -27,15 +27,27 @@ export async function POST(req: NextRequest) {
     });
 
     const saved = await prisma.resume.create({
-      data: {
-        resumeText,
-        jobDescription,
-        ...ai,
-        ruleScore: rules,
-        finalScore,
-        rating,
-      },
-    });
+  data: {
+    resumeText,
+    jobDescription,
+
+    skillMatch: ai.skillMatch,
+    experienceScore: ai.experienceScore,
+    atsScore: ai.atsScore,
+    grammarScore: ai.grammarScore,
+
+    strengths: ai.strengths,
+    weaknesses: ai.weaknesses,
+    missingSkills: ai.missingSkills,
+    improvementSuggestions: ai.improvementSuggestions,
+    finalVerdict: ai.finalVerdict,
+
+    ruleScore: rules,
+    finalScore,
+    rating,
+  },
+});
+
 
     return NextResponse.json({ id: saved.id });
   } catch (err: any) {

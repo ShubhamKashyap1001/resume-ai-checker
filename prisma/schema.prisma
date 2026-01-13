@@ -9,16 +9,38 @@ datasource db {
 }
 
 
+// model Resume {
+//   id              Int      @id @default(autoincrement())
+//   resumeText      String   @db.Text
+//   jobDescription  String   @db.Text
+//   skillMatch      Float
+//   experienceScore Float
+//   atsScore        Float
+//   grammarScore    Float
+//   ruleScore       Float
+//   finalScore      Float
+//   rating          String
+//   createdAt       DateTime @default(now())
+// }
+
 model Resume {
-  id              Int      @id @default(autoincrement())
-  resumeText      String   @db.Text
-  jobDescription  String   @db.Text
-  skillMatch      Float
-  experienceScore Float
-  atsScore        Float
-  grammarScore    Float
-  ruleScore       Float
-  finalScore      Float
-  rating          String
-  createdAt       DateTime @default(now())
+  id                     Int      @id @default(autoincrement())
+  resumeText             String
+  jobDescription          String
+
+  skillMatch              Float
+  experienceScore         Float
+  atsScore                Float
+  grammarScore            Float
+  ruleScore               Int
+  finalScore              Float
+  rating                  String
+
+  strengths               String[]
+  weaknesses              String[]
+  missingSkills            String[]
+  improvementSuggestions  String[]
+  finalVerdict             String?
+
+  createdAt               DateTime @default(now())
 }
