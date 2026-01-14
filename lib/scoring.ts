@@ -4,15 +4,33 @@ export function calculateFinalScore(data: {
   atsScore: number;         
   grammarScore: number;     
   ruleScore: number;        
+  missingSkills?: string[];
+  weaknesses?: string[];
 }) {
-  const finalScore =
-    data.skillMatch * 3 +          // 30%
-    data.experienceScore * 2.5 +   // 25%
-    data.atsScore * 2 +            // 20%
-    data.grammarScore * 1.5 +      // 15%
-    data.ruleScore * 1;            // 10%
+  // Normalize ruleScore (0–10 → 0–100)
+  const normalizedRuleScore = data.ruleScore * 10;
 
-  const roundedScore = Math.round(finalScore);
+  // ✅ WEIGHTED AVERAGE (REALISTIC)
+  let score =
+    data.skillMatch * 0.30 +          // 30%
+    data.experienceScore * 0.25 +     // 25%
+    data.atsScore * 0.20 +            // 20%
+    data.grammarScore * 0.15 +        // 15%
+    normalizedRuleScore * 0.10;       // 10%
+
+  // 🔴 PENALTIES (THIS MAKES IT REAL)
+  if (data.missingSkills) {
+    score -= data.missingSkills.length * 4;
+  }
+
+  if (data.weaknesses) {
+    score -= data.weaknesses.length * 2;
+  }
+
+  // Clamp score between 1–100
+  score = Math.max(1, Math.min(100, score));
+
+  const roundedScore = Math.round(score);
 
   let rating = "❌ Poor";
   if (roundedScore >= 85) rating = "⭐⭐⭐⭐⭐ Excellent";
@@ -21,7 +39,7 @@ export function calculateFinalScore(data: {
   else if (roundedScore >= 40) rating = "⭐ Needs Improvement";
 
   return {
-    finalScore: Math.min(Math.max(roundedScore, 1), 100),
+    finalScore: roundedScore,
     rating,
   };
 }

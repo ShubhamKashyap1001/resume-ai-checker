@@ -1,27 +1,11 @@
 
 // generator client {
 //   provider = "prisma-client-js"
-//   output   = "../app/generated/prisma"
 // }
 
 // datasource db {
 //   provider = "postgresql"
 // }
-
-
-// // model Resume {
-// //   id              Int      @id @default(autoincrement())
-// //   resumeText      String   @db.Text
-// //   jobDescription  String   @db.Text
-// //   skillMatch      Float
-// //   experienceScore Float
-// //   atsScore        Float
-// //   grammarScore    Float
-// //   ruleScore       Float
-// //   finalScore      Float
-// //   rating          String
-// //   createdAt       DateTime @default(now())
-// // }
 
 // model Resume {
 //   id                     Int      @id @default(autoincrement())
@@ -46,6 +30,44 @@
 // }
 
 
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+// }
+
+// model Resume {
+//   id                     Int      @id @default(autoincrement())
+
+//   // Resume content
+//   resumeText             String         
+//   rawText                String?         
+
+//   // Job description
+//   jobDescription         String
+
+//   // Scores
+//   skillMatch             Float
+//   experienceScore        Float
+//   atsScore               Float
+//   grammarScore           Float
+//   ruleScore              Int
+//   finalScore             Float
+//   rating                 String
+
+//   // Analysis
+//   strengths              String[]
+//   weaknesses             String[]
+//   missingSkills          String[]
+//   improvementSuggestions String[]
+//   finalVerdict           String?
+
+//   createdAt              DateTime @default(now())
+// }
+
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -56,22 +78,34 @@ datasource db {
 
 model Resume {
   id                     Int      @id @default(autoincrement())
+
+  // Resume content
   resumeText             String
-  jobDescription          String
+  rawText                String?
+  resumePdfUrl String?
 
-  skillMatch              Float
-  experienceScore         Float
-  atsScore                Float
-  grammarScore            Float
-  ruleScore               Int
-  finalScore              Float
-  rating                  String
 
-  strengths               String[]
-  weaknesses              String[]
-  missingSkills            String[]
-  improvementSuggestions  String[]
-  finalVerdict             String?
+  // Job description
+  jobDescription         String
 
-  createdAt               DateTime @default(now())
+  // Scores
+  skillMatch             Float
+  experienceScore        Float
+  atsScore               Float
+  grammarScore           Float
+  ruleScore              Int
+  finalScore             Float
+  rating                 String
+
+  // Analysis
+  strengths              String[]
+  weaknesses             String[]
+  missingSkills          String[]
+  improvementSuggestions String[]
+  finalVerdict           String?
+
+  //NEW (ResumeWorded-style)
+  lineAnalysis           Json?
+
+  createdAt              DateTime @default(now())
 }
