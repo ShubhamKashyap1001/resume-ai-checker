@@ -271,6 +271,20 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
+      <section className="px-4 py-20 border-y border-white/[0.05] bg-emerald-500/[0.025]">
+        <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-2">
+          <a href="/builder" className="group rounded-3xl border border-emerald-500/20 bg-[#0d1516] p-8 hover:border-emerald-400/50 transition-all">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">Resume Builder</p><h2 className="mt-3 text-3xl font-bold">Build an ATS-ready resume</h2><p className="mt-3 text-sm leading-6 text-gray-400">Choose a clean template, enter your experience, improve your writing with AI, and preview the finished resume.</p><span className="mt-6 inline-block text-sm font-semibold text-emerald-300 group-hover:translate-x-1 transition-transform">Start building →</span>
+          </a>
+          <a href="/latex-builder" className="group rounded-3xl border border-amber-500/20 bg-[#15130d] p-8 hover:border-amber-400/50 transition-all">
+            <p className="text-xs font-bold uppercase tracking-widest text-amber-400">Overleaf-style Editor</p><h2 className="mt-3 text-3xl font-bold">Use popular LaTeX templates</h2><p className="mt-3 text-sm leading-6 text-gray-400">Edit Jake’s Resume, Awesome CV, Deedy CV and modern minimal templates with a live PDF-style preview.</p><span className="mt-6 inline-block text-sm font-semibold text-amber-300 group-hover:translate-x-1 transition-transform">Open LaTeX editor →</span>
+          </a>
+          <a href="/company-guides" className="group lg:col-span-2 rounded-3xl border border-violet-500/20 bg-violet-500/[0.04] p-8 hover:border-violet-400/50 transition-all flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div><p className="text-xs font-bold uppercase tracking-widest text-violet-400">New · 15 company guides</p><h2 className="mt-3 text-3xl font-bold">Tailor your resume for top employers</h2><p className="mt-3 text-sm text-gray-400">Company-specific focus areas, keywords, achievement examples and official career sources.</p></div><span className="shrink-0 text-sm font-semibold text-violet-300 group-hover:translate-x-1 transition-transform">Explore guides →</span>
+          </a>
+        </div>
+      </section>
+
       <section
         id="how-it-works"
         className="px-4 py-20 bg-white/[0.02] border-y border-white/[0.05]"
